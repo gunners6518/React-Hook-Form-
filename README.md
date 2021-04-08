@@ -15,7 +15,17 @@ register に入っている値を保持して submit 時の処理を行う。
 ## validation
 
 - required を使う
-  例：　`<input {...register("exampleRequired", { required: true })} />`
-  例：valueAsNumber で number 型でのみ扱う　`<input {...register("age", { valueAsName: true })} />`
+  `<input {...register("exampleRequired", { required: true })} />`
+  valueAsNumber で number 型で入力値を返す　`<input {...register("age", { valueAsName: true })} />`
+  maxLength で 4 文字以下は OK ` <input {...register("lastName", { required: true, maxLength: 4 })} />`
 
--
+- error ハンドル
+
+```ts
+<input {...register("firstName", { required: "This is required" })} />;
+{
+  errors.firstName && <p>{errors.firstName.message}</p>;
+}
+```
+
+[![Image from Gyazo](https://i.gyazo.com/22407b814c959c52b7ee20ba987820f3.png)](https://gyazo.com/22407b814c959c52b7ee20ba987820f3)
